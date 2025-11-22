@@ -1,0 +1,109 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Predicting Substance Consumption</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="{% static 'layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+  <style>
+    .bgded {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .form-container {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .form-container h3 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+      text-align: center; 
+
+    }
+
+    .btn:hover {
+      background: #555;
+    }
+
+    .register-btn {
+      background: #28a745;
+    }
+
+    .register-btn:hover {
+      background: #218838;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin-top: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body id="top">
+
+<div class="bgded overlay" style="background-image:url('{% static 'images/3.jpg' %}');">
+  <div class="form-container">
+    <h3 class="heading">Predicting Substance Consumption</h3>
+
+    {% if messages %}
+      <div class="error-message">
+        <ul>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+    <form action="{% url 'login' %}" method="POST" enctype="multipart/form-data" class="login100-form validate-form">
+      {% csrf_token %}
+      <div class="wrap-input100 validate-input" data-validate="Valid name is required">
+        <input class="input100" type="text" name="name" style="color: black;" required>
+        <span class="focus-input100"></span>
+        <span class="label-input100">Username</span>
+      </div>
+      <div class="wrap-input100 validate-input" data-validate="Password is required">
+        <input class="input100" type="password" name="password" style="color: black;" required>
+        <span class="focus-input100"></span>
+        <span class="label-input100">Password</span>
+      </div>
+      <button type="submit" class="btn">LOGIN</button>
+      <a href="{% url 'register' %}" class="btn register-btn">REGISTER</a>
+    </form>
+  </div>
+</div>
+
+<script src="{% static 'layout/scripts/jquery.min.js' %}"></script>
+<script src="{% static 'layout/scripts/jquery.backtotop.js' %}"></script>
+<script src="{% static 'layout/scripts/jquery.mobilemenu.js' %}"></script>
+
+</body>
+</html>
